@@ -478,17 +478,8 @@ module.exports = {
             'error',
             'prefer-single',
         ],
-        'react/jsx-equals-spacing': [
-            'error',
-            'always',
-        ],
-        'react/jsx-curly-spacing': [
-            'error',
-            {
-                when:     'always',
-                children: true,
-            },
-        ],
+        'react/jsx-equals-spacing':     0,
+        'react/jsx-curly-spacing':      0,
         'react/jsx-max-props-per-line': [
             'error',
             {
