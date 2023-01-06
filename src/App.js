@@ -3,9 +3,5 @@ import { Feed } from './components/Feed';
 // Components
 
 export const App = () => {
-    return (
-        <>
-            <Feed />
-        </>
-    );
+    return <Feed />;
 };
