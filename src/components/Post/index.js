@@ -1,44 +1,87 @@
+import { useState, useContext } from 'react';
+import { v4 as uuidV4 } from 'uuid';
+import { CommentForm } from '../forms/CommentForm';
+import { CommentBody } from '../Comment';
 import { CommentIcon } from '../Icons/CommentIcon';
 import { LikeIcon } from '../Icons/LikeIcon';
 
-const Post = () => {
+import postJson from '../../data/mock-data/posts.json';
+import { commentsFormContext } from '../../lib/commentsFormContext';
+
+
+const Post = ({ data }) => {
+    const { currentPostHash, setCurrentPostHash } = useContext(commentsFormContext);
+    const [comments, setComments] = useState(data.comments);
+
+    // TODO: Переделать юзерНейм
+    const userName = document.querySelector('.navigation-profile')?.textContent;
+
+    const handleCommentBtnClick = () => {
+        setCurrentPostHash(data.hash);
+    };
+
+    const addComment = (comment) => {
+        setComments([
+            ...comments,
+            {
+                hash:    uuidV4(),
+                body:    comment,
+                created: new Date().toLocaleString(),
+                author:  {
+                    hash: uuidV4(),
+                    name: userName,
+                },
+            },
+        ]);
+    };
+
     return (
-        <section className='post'>
-            <img src='https://placeimg.com/256/256/animals' alt='avatar' />
+        <>
+            <li className='post'>
+                <img src={data.author.avatar} alt='avatar' />
 
-            <a>Chuck Norris</a>
+                <a href={`/users/${data.author.hash}`}>{data.author.name}</a>
 
-            <time>about 4 hours ago</time>
+                <time>{data.created}</time>
 
-            <p>
-                Lend your friend $20, if he doesn’t pay you back then he’s not
-                your friend. Money well spent ~ Ted Nicolas
-            </p>
+                <p>
+                    {data.body}
+                </p>
 
-            <div className='reaction-controls'>
-                <section className='like'>
-                    <div>
-                        <span>0</span>
-                    </div>
-                    <span className='icon'>
-                        <LikeIcon /> Like
+                <div className='reaction-controls'>
+                    <section className='like'>
+                        <div>
+                            <span>0</span>
+                        </div>
+                        <span className='icon'>
+                            <LikeIcon /> Like
+                        </span>
+                    </section>
+
+                    {/* TODO: Переделать Классі */}
+
+                    <span onClick={handleCommentBtnClick} className={currentPostHash === data.hash ? 'comment comment-fill' : 'comment'} >
+                        <CommentIcon />{comments.length} comments
                     </span>
-                </section>
+                </div>
+                {currentPostHash === data.hash && <>
+                    <CommentForm
+                        addComment={ addComment} />
+                    <hr className='separator'></hr>
+                    <ul>
+                        <CommentBody comments={comments} />
+                    </ul>
+                </>}
+            </li>
 
-                <span className='comment'>
-                    <CommentIcon />0 comments
-                </span>
-            </div>
-        </section>
+        </>
     );
 };
 
 export const PostsContainer = () => {
     return (
-        <div className='posts-container' style={{ position: 'relative' }}>
-            <Post />
-            <Post />
-            <Post />
-        </div>
+        <ul className='posts-container'>
+            {postJson.map((data) =>  <Post key={data.hash} data={data} />)}
+        </ul>
     );
 };
