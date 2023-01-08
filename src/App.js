@@ -1,7 +1,10 @@
 // Core
 import { Feed } from './components/Feed';
+import { CommentsFormProvider } from './providers/CommentsFormProvider';
 // Components
 
 export const App = () => {
-    return <Feed />;
+    return <CommentsFormProvider>
+        <Feed />;
+    </CommentsFormProvider>;
 };
