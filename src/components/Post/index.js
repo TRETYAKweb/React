@@ -1,23 +1,32 @@
 import { useState, useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
+import cx from 'classnames';
+
 import { CommentForm } from '../forms/CommentForm';
-import { CommentBody } from '../Comment';
+import { Comment } from '../Comment';
 import { CommentIcon } from '../Icons/CommentIcon';
 import { LikeIcon } from '../Icons/LikeIcon';
+
 
 import postJson from '../../data/mock-data/posts.json';
 import { commentsFormContext } from '../../lib/commentsFormContext';
 
 
 const Post = ({ data }) => {
+    const [isCommentAddingFormVisible, setIsCommentAddingFormVisible] = useState(false);
     const { currentPostHash, setCurrentPostHash } = useContext(commentsFormContext);
     const [comments, setComments] = useState(data.comments);
 
-    // TODO: Переделать юзерНейм
-    const userName = document.querySelector('.navigation-profile')?.textContent;
+    const commentClasses = cx('comment', {
+        'comment-fill': currentPostHash === data.hash && isCommentAddingFormVisible,
+    });
+
+
+    const userName = 'Евгений Третяк';
 
     const handleCommentBtnClick = () => {
         setCurrentPostHash(data.hash);
+        setIsCommentAddingFormVisible((prev) => !prev);
     };
 
     const addComment = (comment) => {
@@ -58,18 +67,21 @@ const Post = ({ data }) => {
                         </span>
                     </section>
 
-                    {/* TODO: Переделать Классі */}
-
-                    <span onClick={handleCommentBtnClick} className={currentPostHash === data.hash ? 'comment comment-fill' : 'comment'} >
+                    <span onClick={handleCommentBtnClick} className={commentClasses} >
                         <CommentIcon />{comments.length} comments
                     </span>
                 </div>
-                {currentPostHash === data.hash && <>
+                {currentPostHash === data.hash && isCommentAddingFormVisible && <>
                     <CommentForm
-                        addComment={ addComment} />
+                        addComment={ addComment} showComments={ setIsCommentAddingFormVisible } />
                     <hr className='separator'></hr>
                     <ul>
-                        <CommentBody comments={comments} />
+                        {comments.map((it) => <Comment
+                            key={it.hash}
+                            authorName={it.author.name}
+                            created={it.created}
+                            body={it.body} />)}
+
                     </ul>
                 </>}
             </li>
