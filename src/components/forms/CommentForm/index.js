@@ -1,5 +1,3 @@
-import propTypes from 'prop-types';
-
 export const CommentForm = ({ addComment, showComments }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -7,6 +5,7 @@ export const CommentForm = ({ addComment, showComments }) => {
         const formData = new FormData(form);
         const comment = formData.get('body');
         addComment(comment);
+        showComments(false);
         form.reset();
     };
 
@@ -28,9 +27,4 @@ export const CommentForm = ({ addComment, showComments }) => {
             <button type='submit'>Комментировать</button>
         </form>
     </>;
-};
-
-CommentForm.propTypes = {
-    addComment:   propTypes.func,
-    showComments: propTypes.func,
 };
