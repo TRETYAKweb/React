@@ -1,13 +1,13 @@
-export const CommentBody = (props) => {
+export const Comment = ({ authorName, created, body }) => {
     return (
         <>
-            {props.comments.map((it) => <li className='commentBody' key={it.hash}>
+            <li className='commentBody'>
                 <p>
-                    {it.author.name}
-                    <span>{it.created}</span>
+                    {authorName}
+                    <span>{created}</span>
                 </p>
-                <p>{it.body}</p>
-            </li>)}
+                <p>{body}</p>
+            </li>
         </>
     );
 };
