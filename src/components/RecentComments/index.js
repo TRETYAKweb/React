@@ -1,18 +1,24 @@
-import commentJson from '../../data/mock-data/comments.json';
+import { useRecentComments } from '../../hooks/useRecentComments';
+
+import { fetchify } from '../../helpers';
 
 const Comment = () => {
+    const { data, isFetched } = useRecentComments();
+
+    const commentsJSX = data?.map((it) => <li className='comment' key={it.hash}>
+        <a href={`/users/${it.author.hash}`}>
+            <p className='name'>{it.author.name}</p>
+        </a>
+        <time>{it.created}</time>
+        <p className='body'>{it.body}</p>
+        <a href={`/rtx-homeworks/feed/${it.post.hash}`}>
+        Больше комментариев к посту
+        </a>
+    </li>);
+
     return (
         <>
-            {commentJson.map((it) => <li className='comment' key={it.hash}>
-                <a href={`/users/${it.author.hash}`}>
-                    <p className='name'>{it.author.name}</p>
-                </a>
-                <time>{it.created}</time>
-                <p className='body'>{it.body}</p>
-                <a href={`/rtx-homeworks/feed/${it.post.hash}`}>
-                    Больше комментариев к посту
-                </a>
-            </li>)}
+            { fetchify(isFetched, commentsJSX)}
         </>
     );
 };
