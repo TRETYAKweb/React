@@ -1,6 +1,6 @@
 {
     "name": "rtx-feed",
-    "version": "1.0.8",
+    "version": "1.1.0",
     "private": true,
     "scripts": {
         "dev": "react-scripts start",
@@ -9,7 +9,8 @@
         "eject": "react-scripts eject",
         "start": "serve -s build",
         "lint": "eslint ./src",
-        "eslint:fix": "eslint ./src --fix"
+        "eslint:fix": "eslint ./src --fix",
+        "release": "standard-version"
     },
     "dependencies": {
         "@hookform/resolvers": "2.9.7",
@@ -62,6 +63,7 @@
         "react-scripts": "5.0.1",
         "sass": "1.54.4",
         "serve": "14.0.1",
+        "standard-version": "^9.5.0",
         "stylelint": "14.10.0",
         "stylelint-config-recess-order": "3.0.0",
         "stylelint-config-standard": "27.0.0",
