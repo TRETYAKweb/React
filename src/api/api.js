@@ -53,7 +53,7 @@ export const api = {
                 },
             });
 
-            return data;
+            return data.data;
         },
         async create(post) {
             const { data } = await axios.post(FEED_URL,
@@ -104,7 +104,7 @@ export const api = {
         async getComments() {
             const { data } = await axios.get(`${FEED_URL}/comments`);
 
-            return data;
+            return data.data;
         },
         async getPostById(postHash) {
             const { data } = await axios.get(`${FEED_URL}/${postHash}`);
