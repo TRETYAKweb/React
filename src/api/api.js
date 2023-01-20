@@ -109,7 +109,7 @@ export const api = {
         async getPostById(postHash) {
             const { data } = await axios.get(`${FEED_URL}/${postHash}`);
 
-            return data;
+            return data.data;
         },
     },
     profile: {
