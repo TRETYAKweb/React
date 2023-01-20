@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 export const Navigation = () => {
     return (
         <div>
@@ -15,19 +17,17 @@ export const Navigation = () => {
                 </div>
                 Chuck Norris
             </div>
-            <a
-                activeclassname='active'
-                className='navigation-item'
-                href='/rtx-homeworks/profile'>
+            <NavLink
+                to = '/profile'
+                className='navigation-item'>
                 Профиль
-            </a>
-            <a
-                activeclassname='active'
+            </NavLink>
+            <NavLink
+                to = '/feed'
                 aria-current='page'
-                className='navigation-item active'
-                href='/rtx-homeworks/feed'>
+                className='navigation-item'>
                 Стена
-            </a>
+            </NavLink>
             <button className='logout'>Выйти</button>
         </div>
     );
