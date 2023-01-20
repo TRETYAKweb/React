@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { useRecentComments } from '../../hooks/useRecentComments';
 
 import { fetchify } from '../../helpers';
@@ -11,9 +12,9 @@ const Comment = () => {
         </a>
         <time>{it.created}</time>
         <p className='body'>{it.body}</p>
-        <a href={`/rtx-homeworks/feed/${it.post.hash}`}>
+        <NavLink to={`/feed/${it.post.hash}`}>
         Больше комментариев к посту
-        </a>
+        </NavLink>
     </li>);
 
     return (
