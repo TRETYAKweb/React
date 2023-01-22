@@ -1,6 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { authContext } from '../../lib/authContext';
 
 export const Navigation = () => {
+    const navigation = useNavigate();
+    const { authData } = useContext(authContext);
+
+    const handleClick = () => navigation('/login');
+
     return (
         <div>
             <div className='navigation-profile'>
@@ -15,7 +22,7 @@ export const Navigation = () => {
                         </div>
                     </div>
                 </div>
-                Chuck Norris
+                {authData.name}
             </div>
             <NavLink
                 to = '/profile'
@@ -28,7 +35,7 @@ export const Navigation = () => {
                 className='navigation-item'>
                 Стена
             </NavLink>
-            <button className='logout'>Выйти</button>
+            <button onClick={handleClick} className='logout'>Выйти</button>
         </div>
     );
 };
