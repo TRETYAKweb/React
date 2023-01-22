@@ -14,6 +14,7 @@ import './theme/init.scss';
 
 // Context Provider
 import { CommentsFormProvider } from './providers/CommentsFormProvider';
+import { AuthProvider } from './providers/AuthProvider';
 
 
 // lib
@@ -24,11 +25,13 @@ import { App } from './App';
 
 createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={queryClient} >
-        <CommentsFormProvider>
-            <Router>
-                <App />
-            </Router>
-        </CommentsFormProvider>
+        <AuthProvider>
+            <CommentsFormProvider>
+                <Router>
+                    <App />
+                </Router>
+            </CommentsFormProvider>
+        </AuthProvider>
         <ReactQueryDevtools initialIsOpen = { false } />
         <ToastContainer />
     </QueryClientProvider>,
