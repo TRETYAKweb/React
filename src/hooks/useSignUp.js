@@ -18,12 +18,11 @@ export const useSignUp = () => {
         onError,
     });
 
-    useEffect(() => {
-        const token = mutation.data?.data;
+    console.log(mutation);
 
-        if (mutation.isSuccess && token) {
-            localStorage.setItem('token', token);
-            navigation('/feed');
+    useEffect(() => {
+        if (mutation.isSuccess && mutation.data) {
+            navigation('/login');
         }
     }, [mutation.isSuccess]);
 
