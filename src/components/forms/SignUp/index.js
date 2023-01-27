@@ -1,7 +1,8 @@
 // Core
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 // Hooks
 import { useSignUp } from '../../../hooks';
@@ -62,6 +63,7 @@ export const SignUpForm = () => {
                             Создать аккаунт
                     </button>
                 </div>
+                <p className='options'>Есть аккаунт? <NavLink to='/login'>Войти</NavLink></p>
             </div>
         </form>
     );
