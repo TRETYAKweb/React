@@ -4,7 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useContext } from 'react';
 
 // Hooks
+import { useNavigate } from 'react-router-dom';
 import { useUpdateProfile } from '../../../hooks';
+
 
 // Elements
 import { Input } from '../elements';
@@ -15,8 +17,8 @@ import { authContext } from '../../../lib/authContext';
 import { schema } from './config';
 
 export const ProfileForm = () => {
-    const { authData } = useContext(authContext);
-
+    const navigate = useNavigate();
+    const { authData  } = useContext(authContext);
     const updateProfile = useUpdateProfile();
 
     const form = useForm({
@@ -27,7 +29,9 @@ export const ProfileForm = () => {
     const handleSubmit = form.handleSubmit(async (user) => {
         await updateProfile.mutateAsync(user);
         form.reset();
+        navigate('/feed');
     });
+
 
     useEffect(() => {
         form.setFocus('firstName');
