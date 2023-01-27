@@ -120,7 +120,7 @@ export const api = {
                 },
             });
 
-            return data;
+            return data.data;
         },
         updateProfile(profileInfo) {
             return fetch(`${AUTH_URL}/profile`, {
