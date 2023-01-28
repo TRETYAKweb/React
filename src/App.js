@@ -12,23 +12,21 @@ import {
 } from './pages';
 
 export const App = () => {
-    return <>
+    return <Routes>
 
-        <Routes>
-
-            <Route element={<MainLayout hasNav />}>
-                <Route path='/feed' element={<FeedPage />} />
-                <Route path='/feed/:postId' element={<PostCommentsPage />} />
-                <Route path='/profile' element={<ProfilePage />} />
-            </Route>
+        <Route element={<MainLayout hasNav />}>
+            <Route path='/feed' element={<FeedPage />} />
+            <Route path='/feed/:postId' element={<PostCommentsPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+        </Route>
 
 
-            <Route element={<MainLayout />}>
-                <Route path='/signup' element={<SignUpPage />}></Route>
-                <Route path='/login' element={<LoginPage />}></Route>
-            </Route>
+        <Route element={<MainLayout />}>
+            <Route path='/signup' element={<SignUpPage />}></Route>
+            <Route path='/login' element={<LoginPage />}></Route>
+        </Route>
 
-            <Route path='*' element={ <Navigate to ='/feed' replace />} />
-        </Routes>
-    </>;
+        <Route path='*' element={ <Navigate to ='/feed' replace />} />
+
+    </Routes>;
 };
