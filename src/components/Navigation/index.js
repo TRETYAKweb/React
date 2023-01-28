@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { authContext } from '../../lib/authContext';
+import { AppContext } from '../../lib';
 
 export const Navigation = () => {
     const navigation = useNavigate();
-    const { authData } = useContext(authContext);
+    const { authData } = useContext(AppContext);
 
     const handleClick = () => navigation('/login');
 

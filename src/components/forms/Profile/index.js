@@ -11,14 +11,14 @@ import { useUpdateProfile } from '../../../hooks';
 // Elements
 import { Input } from '../elements';
 
-import { authContext } from '../../../lib/authContext';
+import { AppContext } from '../../../lib';
 
 // Other
 import { schema } from './config';
 
 export const ProfileForm = () => {
     const navigate = useNavigate();
-    const { authData  } = useContext(authContext);
+    const { authData  } = useContext(AppContext);
     const updateProfile = useUpdateProfile();
 
     const form = useForm({
@@ -38,27 +38,25 @@ export const ProfileForm = () => {
     }, []);
 
     return (
-        <>
-            <form className='form' onSubmit={handleSubmit}>
-                <div className='wrapper'>
-                    <div>
-                        <h1>Привет, {authData.name}</h1>
-                        <img src='https://placeimg.com/256/256/animals' alt='avatar' />
+        <form className='form' onSubmit={handleSubmit}>
+            <div className='wrapper'>
+                <div>
+                    <h1>Привет, {authData.name}</h1>
+                    <img src='https://placeimg.com/256/256/animals' alt='avatar' />
 
-                        <Input
-                            placeholder='Имя'
-                            error = {form.formState.errors.firstName}
-                            register = {form.register('firstName')} />
-                        <Input
-                            placeholder='Фамилия'
-                            error = {form.formState.errors.lastName}
-                            register = {form.register('lastName')} />
+                    <Input
+                        placeholder='Имя'
+                        error = {form.formState.errors.firstName}
+                        register = {form.register('firstName')} />
+                    <Input
+                        placeholder='Фамилия'
+                        error = {form.formState.errors.lastName}
+                        register = {form.register('lastName')} />
 
-                        <button className='loginSubmit' type='submit'>Обновить профиль</button>
-                    </div>
-                    <a href='/rtx-homeworks/profile/new-password'>Cменить пароль →</a>
+                    <button className='loginSubmit' type='submit'>Обновить профиль</button>
                 </div>
-            </form>
-        </>
+                <a href='/rtx-homeworks/profile/new-password'>Cменить пароль →</a>
+            </div>
+        </form>
     );
 };

@@ -9,7 +9,7 @@ import { CommentIcon } from '../Icons/CommentIcon';
 import { LikeIcon } from '../Icons/LikeIcon';
 
 // Context
-import { commentsFormContext } from '../../lib/commentsFormContext';
+import { AppContext } from '../../lib/AppContext';
 
 // Helpers
 import { fetchify } from '../../helpers/fetchify';
@@ -19,7 +19,7 @@ import { usePosts } from '../../hooks';
 
 const Post = ({ data }) => {
     const [isCommentAddingFormVisible, setIsCommentAddingFormVisible] = useState(false);
-    const { currentPostHash, setCurrentPostHash } = useContext(commentsFormContext);
+    const { currentPostHash, setCurrentPostHash } = useContext(AppContext);
     const [comments, setComments] = useState(data.comments);
 
     const userName = 'Евгений Третяк';
