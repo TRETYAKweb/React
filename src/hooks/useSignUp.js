@@ -12,13 +12,9 @@ export const useSignUp = () => {
         toast.error(error.message);
     };
 
-    const mutation = useMutation((user) => {
-        return api.auth.signup(user);
-    }, {
+    const mutation = useMutation((user) => api.auth.signup(user), {
         onError,
     });
-
-    console.log(mutation);
 
     useEffect(() => {
         if (mutation.isSuccess && mutation.data) {

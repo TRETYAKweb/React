@@ -7,11 +7,7 @@ import { api } from '../api/api';
 export const useLogin = () => {
     const navigate = useNavigate();
 
-
-    const mutation = useMutation((credential) => {
-        return api.auth.login(credential);
-    });
-
+    const mutation = useMutation((credentials) => api.auth.login(credentials));
 
     useEffect(() => {
         const token = mutation.data?.data;
