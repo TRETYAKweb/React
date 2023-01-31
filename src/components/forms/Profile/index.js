@@ -2,24 +2,25 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useContext } from 'react';
+import { observer } from 'mobx-react-lite';
+
 
 // Hooks
 import { useNavigate } from 'react-router-dom';
-import { useUpdateProfile } from '../../../hooks';
+import { useUpdateProfile, useStore, useProfile } from '../../../hooks';
 
 
 // Elements
 import { Input } from '../elements';
 
-import { AppContext } from '../../../lib';
-
 // Other
 import { schema } from './config';
 
-export const ProfileForm = () => {
+export const ProfileForm = observer(() => {
+    const { authStore } = useStore();
     const navigate = useNavigate();
-    const { authData  } = useContext(AppContext);
     const updateProfile = useUpdateProfile();
+    const { data: profileData } = useProfile();
 
     const form = useForm({
         mode:     'onTouched',
@@ -41,7 +42,7 @@ export const ProfileForm = () => {
         <form className='form' onSubmit={handleSubmit}>
             <div className='wrapper'>
                 <div>
-                    <h1>Привет, {authData.name}</h1>
+                    <h1>Привет, {profileData?.name}</h1>
                     <img src='https://placeimg.com/256/256/animals' alt='avatar' />
 
                     <Input
@@ -59,4 +60,4 @@ export const ProfileForm = () => {
             </div>
         </form>
     );
-};
+});
