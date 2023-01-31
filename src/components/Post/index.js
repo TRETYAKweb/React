@@ -1,6 +1,7 @@
 // Core
 import { useState, useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
+import { observer } from 'mobx-react-lite';
 
 // Components
 import { CommentForm } from '../forms/CommentForm';
@@ -8,8 +9,7 @@ import { Comment } from '../Comment';
 import { CommentIcon } from '../Icons/CommentIcon';
 import { LikeIcon } from '../Icons/LikeIcon';
 
-// Context
-import { AppContext } from '../../lib/AppContext';
+import { useStore } from '../../hooks';
 
 // Helpers
 import { fetchify } from '../../helpers/fetchify';
@@ -17,16 +17,14 @@ import { fetchify } from '../../helpers/fetchify';
 // Hooks
 import { usePosts } from '../../hooks';
 
-const Post = ({ data }) => {
-    const [isCommentAddingFormVisible, setIsCommentAddingFormVisible] = useState(false);
-    const { currentPostHash, setCurrentPostHash } = useContext(AppContext);
+const Post = observer(({ data }) => {
+    const { commentsFormStore } = useStore();
     const [comments, setComments] = useState(data.comments);
 
     const userName = 'Евгений Третяк';
 
     const handleCommentBtnClick = () => {
-        setCurrentPostHash(data.hash);
-        setIsCommentAddingFormVisible((prev) => !prev);
+        commentsFormStore.setCurrentPostHash(data.hash);
     };
 
     const addComment = (comment) => {
@@ -67,14 +65,13 @@ const Post = ({ data }) => {
                         </span>
                     </section>
 
-                    <span onClick={handleCommentBtnClick} className={currentPostHash === data.hash && isCommentAddingFormVisible ? 'comment comment-fill' : 'comment'} >
+                    <span onClick={handleCommentBtnClick} className={commentsFormStore.postHash === data.hash ? 'comment comment-fill' : 'comment'} >
                         <CommentIcon />{comments.length} comments
                     </span>
                 </div>
-                {currentPostHash === data.hash && isCommentAddingFormVisible && <>
+                {commentsFormStore.postHash === data.hash && <>
                     <CommentForm
-                        addComment={ addComment}
-                        showComments={ setIsCommentAddingFormVisible } />
+                        addComment={ addComment} />
 
                     <hr className='separator'></hr>
                     <ul>
@@ -89,7 +86,7 @@ const Post = ({ data }) => {
 
         </>
     );
-};
+});
 
 export const PostsContainer = () => {
     const {
