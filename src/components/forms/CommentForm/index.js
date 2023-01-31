@@ -1,11 +1,10 @@
-export const CommentForm = ({ addComment, showComments }) => {
+export const CommentForm = ({ addComment }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const comment = formData.get('body');
         addComment(comment);
-        showComments(false);
         form.reset();
     };
 
