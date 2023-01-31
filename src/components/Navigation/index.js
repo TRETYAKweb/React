@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AppContext } from '../../lib';
+import { observer } from 'mobx-react-lite';
+import { useProfile } from '../../hooks';
 
-export const Navigation = () => {
+export const Navigation = observer(() => {
     const navigation = useNavigate();
-    const { authData } = useContext(AppContext);
+    const { data } = useProfile();
 
     const handleClick = () => navigation('/login');
 
@@ -22,7 +22,7 @@ export const Navigation = () => {
                         </div>
                     </div>
                 </div>
-                {authData.name}
+                {data?.name}
             </div>
             <NavLink
                 to = '/profile'
@@ -38,4 +38,4 @@ export const Navigation = () => {
             <button onClick={handleClick} className='logout'>Выйти</button>
         </div>
     );
-};
+});
