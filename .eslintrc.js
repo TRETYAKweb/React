@@ -54,8 +54,9 @@ module.exports = {
                 SwitchCase: 1,
             },
         ],
-        'react/prop-types':  'off',
-        'import/extensions': [
+        'default-param-last': 'off',
+        'react/prop-types':   'off',
+        'import/extensions':  [
             'warn',
             'ignorePackages',
             {
