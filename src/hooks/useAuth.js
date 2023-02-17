@@ -1,19 +1,17 @@
-import { toast } from 'react-toastify';
 import { useQuery } from 'react-query';
-import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
-import { useStore, useProfile  } from '.';
+import { useDispatch } from 'react-redux';
+import { errorAction } from '../lib/redux/actions';
 
 // Api
 import { api } from '../api/api';
 
 
 export const useAuth = () => {
-    const { uiStore } = useStore();
+    const dispatch = useDispatch();
 
     const query = useQuery('auth', api.auth.auth, {
         onError: (error) => {
-            uiStore.setErrorMessage(error.response.data.message);
+            dispatch(errorAction.setError(error.response.data.message));
         },
     });
 

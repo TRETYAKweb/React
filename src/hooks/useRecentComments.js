@@ -1,14 +1,16 @@
 import { useQuery } from 'react-query';
-import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { errorAction } from '../lib/redux/actions';
 import { api } from '../api/api';
 
 
 export const useRecentComments = () => {
-    const onError = (error) => {
-        toast(error.message);
-    };
+    const dispatch = useDispatch();
+
     const query = useQuery('сomments', api.posts.getComments, {
-        onError,
+        onError: (error) => {
+            dispatch(errorAction.setError(error.response.data.message));
+        },
     });
 
     return query;
