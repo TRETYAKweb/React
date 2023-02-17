@@ -4,5 +4,4 @@ export { useSignUp } from './useSignUp';
 export { useLogin } from './useLogin';
 export { useUpdateProfile  } from './useUpdateProfile';
 export { useProfile  } from './useProfile';
-export { useStore  } from './useStore';
 export { useAuth  } from './useAuth';
