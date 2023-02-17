@@ -1,8 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 import { useProfile } from '../../hooks';
 
-export const Navigation = observer(() => {
+export const Navigation = () => {
     const navigation = useNavigate();
     const { data } = useProfile();
 
@@ -38,4 +37,4 @@ export const Navigation = observer(() => {
             <button onClick={handleClick} className='logout'>Выйти</button>
         </div>
     );
-});
+};

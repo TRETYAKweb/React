@@ -2,12 +2,10 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-
 
 // Hooks
 import { useNavigate } from 'react-router-dom';
-import { useUpdateProfile, useStore, useProfile } from '../../../hooks';
+import { useUpdateProfile, useProfile } from '../../../hooks';
 
 
 // Elements
@@ -16,8 +14,7 @@ import { Input } from '../elements';
 // Other
 import { schema } from './config';
 
-export const ProfileForm = observer(() => {
-    const { authStore } = useStore();
+export const ProfileForm = () => {
     const navigate = useNavigate();
     const updateProfile = useUpdateProfile();
     const { data: profileData } = useProfile();
@@ -60,4 +57,4 @@ export const ProfileForm = observer(() => {
             </div>
         </form>
     );
-});
+};

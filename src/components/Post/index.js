@@ -1,7 +1,8 @@
 // Core
 import { useState, useContext } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { observer } from 'mobx-react-lite';
+// Core
+import { useDispatch, useSelector } from 'react-redux';
 
 // Components
 import { CommentForm } from '../forms/CommentForm';
@@ -9,7 +10,8 @@ import { Comment } from '../Comment';
 import { CommentIcon } from '../Icons/CommentIcon';
 import { LikeIcon } from '../Icons/LikeIcon';
 
-import { useStore } from '../../hooks';
+import { selectCurrentPostHash } from '../../lib/redux/selectors';
+import { commentsFormActions } from '../../lib/redux/actions';
 
 // Helpers
 import { fetchify } from '../../helpers/fetchify';
@@ -17,14 +19,15 @@ import { fetchify } from '../../helpers/fetchify';
 // Hooks
 import { usePosts } from '../../hooks';
 
-const Post = observer(({ data }) => {
-    const { commentsFormStore } = useStore();
+const Post = ({ data }) => {
+    const dispatch = useDispatch();
+    const currentPostHash = useSelector(selectCurrentPostHash);
     const [comments, setComments] = useState(data.comments);
 
     const userName = 'Евгений Третяк';
 
     const handleCommentBtnClick = () => {
-        commentsFormStore.setCurrentPostHash(data.hash);
+        dispatch(commentsFormActions.setCurrentPostHash(data.hash));
     };
 
     const addComment = (comment) => {
@@ -65,11 +68,11 @@ const Post = observer(({ data }) => {
                         </span>
                     </section>
 
-                    <span onClick={handleCommentBtnClick} className={commentsFormStore.postHash === data.hash ? 'comment comment-fill' : 'comment'} >
+                    <span onClick={handleCommentBtnClick} className={currentPostHash === data.hash ? 'comment comment-fill' : 'comment'} >
                         <CommentIcon />{comments.length} comments
                     </span>
                 </div>
-                {commentsFormStore.postHash === data.hash && <>
+                {currentPostHash === data.hash && <>
                     <CommentForm
                         addComment={ addComment} />
 
@@ -86,7 +89,7 @@ const Post = observer(({ data }) => {
 
         </>
     );
-});
+};
 
 export const PostsContainer = () => {
     const {
