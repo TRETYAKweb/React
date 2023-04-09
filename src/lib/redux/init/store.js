@@ -1,11 +1,19 @@
 // Core
 import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import { rootWatcher } from '../saga/index';
 
 // Instruments
 import { rootReducer } from './rootReducer';
-import { middleware, composeEnhancers } from './middleware';
+
+
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
     rootReducer,
-    composeEnhancers(applyMiddleware(...middleware)),
+    composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
+
+sagaMiddleware.run(rootWatcher);
