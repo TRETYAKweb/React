@@ -29,6 +29,7 @@ export const api = {
 
             return data;
         },
+
         async auth() {
             await axios.get(`${AUTH_URL}/auth`, {
                 headers: {
@@ -36,6 +37,7 @@ export const api = {
                 },
             });
         },
+
         logout() {
             return fetch(`${AUTH_URL}/logout`, {
                 method:  'GET',
@@ -43,6 +45,20 @@ export const api = {
                     Authorization: `Bearer ${api.token}`,
                 },
             });
+        },
+
+        async resetPassword({ oldPassword, newPassword  }) {
+            const { data } = await axios.post(`${AUTH_URL}/reset-password`,
+                { oldPassword, newPassword },
+                {
+                    headers: {
+                        Authorization: this.token,
+                    },
+                });
+
+            console.log('resetPassword data:', data);
+
+            return data;
         },
     },
     posts: {
