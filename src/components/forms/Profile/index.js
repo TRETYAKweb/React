@@ -1,7 +1,8 @@
 // Core
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useContext } from 'react';
+import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 // Hooks
 import { useNavigate } from 'react-router-dom';
@@ -53,7 +54,7 @@ export const ProfileForm = () => {
 
                     <button className='loginSubmit' type='submit'>Обновить профиль</button>
                 </div>
-                <a href='/rtx-homeworks/profile/new-password'>Cменить пароль →</a>
+                <NavLink to={'/newPassword'}>Cменить пароль →</NavLink>
             </div>
         </form>
     );
