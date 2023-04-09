@@ -7,7 +7,7 @@ import { MainLayout } from './components/MainLayout';
 // Pages
 
 import {
-    FeedPage, ProfilePage, PostCommentsPage, SignUpPage, LoginPage,
+    FeedPage, ProfilePage, PostCommentsPage, SignUpPage, LoginPage, NewPasswordPage,
 } from './pages';
 
 import { useErrorMessage } from './hooks/useErrorMessage';
@@ -21,6 +21,7 @@ export const App = () => {
             <Route path='/feed' element={<FeedPage />} />
             <Route path='/feed/:postId' element={<PostCommentsPage />} />
             <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/newPassword' element={<NewPasswordPage />} />
         </Route>
 
 
