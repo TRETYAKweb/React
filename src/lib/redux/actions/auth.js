@@ -7,9 +7,9 @@ export const authActions = Object.freeze({
             payload: token,
         };
     },
-    asyncResetPassword: (oldPassword, newPassword) => {
+    resetPasswordRequest: (oldPassword, newPassword) => {
         return {
-            type:    authTypes.ASYNC_RESET_PASSWORD,
+            type:    authTypes.RESET_PASSWORD_REQUEST,
             payload: { oldPassword, newPassword },
         };
     },
