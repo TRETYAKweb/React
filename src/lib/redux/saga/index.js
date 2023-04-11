@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import { resetPasswordWatcher } from './authSaga';
+import { resetPasswordSaga } from './authSaga';
 
-export function* rootWatcher() {
-    yield all([resetPasswordWatcher()]);
+export function* rootSaga() {
+    yield all([resetPasswordSaga()]);
 }
