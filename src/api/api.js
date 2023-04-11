@@ -52,7 +52,7 @@ export const api = {
                 { oldPassword, newPassword },
                 {
                     headers: {
-                        Authorization: this.token,
+                        Authorization: `Bearer ${api.token}`,
                     },
                 });
 
