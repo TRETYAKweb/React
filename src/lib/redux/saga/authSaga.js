@@ -3,8 +3,7 @@ import { authTypes } from '../types/auth';
 import { authActions, errorAction } from '../actions';
 import { api } from '../../../api';
 
-function* resetPasswordWorker(action) {
-    yield;
+function* resetPassword(action) {
     try {
         const { oldPassword, newPassword } = action.payload;
         const data = yield call(api.auth.resetPassword, { oldPassword, newPassword });
@@ -14,6 +13,6 @@ function* resetPasswordWorker(action) {
     }
 }
 
-export function* resetPasswordWatcher() {
-    yield takeEvery(authTypes.ASYNC_RESET_PASSWORD, resetPasswordWorker);
+export function* resetPasswordSaga() {
+    yield takeEvery(authTypes.RESET_PASSWORD_REQUEST, resetPassword);
 }
