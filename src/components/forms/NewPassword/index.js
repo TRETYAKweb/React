@@ -21,9 +21,9 @@ export const NewPasswordForm = () => {
         resolver: yupResolver(schema),
     });
 
-    const handleSubmit = form.handleSubmit((user) => {
-        const { newPassword, oldPassword } = user;
-        dispatch(authActions.asyncResetPassword(newPassword, oldPassword));
+    const handleSubmit = form.handleSubmit((data) => {
+        const { oldPassword, newPassword } = data;
+        dispatch(authActions.resetPasswordRequest(oldPassword, newPassword));
     });
 
     useEffect(() => {
