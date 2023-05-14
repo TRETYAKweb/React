@@ -4,7 +4,7 @@ import { Navigation } from '../Navigation';
 import { Footer } from '../footer';
 
 
-export const LayoutWithNavigation = () => {
+export const LayoutWithNavigation: React.FC = () => {
     return (
         <>
             <main>
