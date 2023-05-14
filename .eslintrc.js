@@ -1,7 +1,9 @@
 module.exports = {
+    parser:        '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion:  2020,
         sourceType:   'module',
+        project:      './tsconfig.json',
         ecmaFeatures: {
             impliedStrict:    true,
             legacyDecorators: true,
@@ -20,6 +22,7 @@ module.exports = {
         'plugin:import/warnings',
         'plugin:node/recommended',
         'plugin:react/recommended',
+        '@sotream/eslint-config-react-ts',
     ],
     plugins: [
         'no-use-extend-native',
