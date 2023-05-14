@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useProfile } from '../../hooks';
 
-export const Navigation = () => {
+export const Navigation: React.FC = () => {
     const navigation = useNavigate();
     const { data } = useProfile();
 
@@ -21,7 +21,7 @@ export const Navigation = () => {
                         </div>
                     </div>
                 </div>
-                {data?.name}
+                {data?.data?.name}
             </div>
             <NavLink
                 to = '/profile'
