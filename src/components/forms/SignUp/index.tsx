@@ -13,12 +13,22 @@ import { Input } from '../elements';
 // Other
 import { schema } from './config';
 
-export const SignUpForm = () => {
+import { IAuthRequest } from '../../../types';
+
+const defaultValues: IAuthRequest & { confirmPassword: string } = {
+    name:            '',
+    email:           '',
+    password:        '',
+    confirmPassword: '',
+};
+
+export const SignUpForm: React.FC = () => {
     const signup = useSignUp();
 
-    const form = useForm({
+    const form = useForm< typeof defaultValues >({
         mode:     'onTouched',
         resolver: yupResolver(schema),
+        defaultValues,
     });
 
     const handleSubmit = form.handleSubmit(async (data) => {
