@@ -1,10 +1,9 @@
 // Core
-import React from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { createRoot } from 'react-dom/client';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 // Context Provider
 import { Provider } from 'react-redux';
@@ -20,14 +19,15 @@ import { store } from './lib/redux/init/store';
 // App
 import { App } from './App';
 
-createRoot(document.getElementById('root')).render(
-    <QueryClientProvider client={queryClient} >
+ReactDOM.render(
+    <QueryClientProvider client={queryClient}>
         <Provider store={store}>
             <Router>
                 <App />
             </Router>
+            <ToastContainer />
+            <ReactQueryDevtools initialIsOpen={false} />
         </Provider>
-        <ReactQueryDevtools initialIsOpen = { false } />
-        <ToastContainer />
     </QueryClientProvider>,
+    document.getElementById('root'),
 );
