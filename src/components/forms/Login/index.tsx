@@ -12,14 +12,16 @@ import { Input } from '../elements';
 
 // Other
 import { schema } from './config';
+import { IAuthRequest } from '../../../types';
 
-export const LoginForm = () => {
+export const LoginForm: React.FC = () => {
     const login = useLogin();
 
-    const form = useForm({
+    const form = useForm<IAuthRequest>({
         mode:     'onTouched',
         resolver: yupResolver(schema),
     });
+
 
     const handleSubmit = form.handleSubmit(async (credentials) => {
         await login.mutateAsync(credentials);
