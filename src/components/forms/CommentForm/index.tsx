@@ -1,11 +1,15 @@
-export const CommentForm = ({ addComment }) => {
-    const handleSubmit = (event) => {
+import { ICommentFormProps } from '../../../types';
+
+export const CommentForm: React.FC<ICommentFormProps> = ({ addComment }) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const form = event.target;
+        const form = event.currentTarget;
         const formData = new FormData(form);
         const comment = formData.get('body');
-        addComment(comment);
-        form.reset();
+        if (typeof comment === 'string') {
+            addComment(comment);
+            form.reset();
+        }
     };
 
     return <>
