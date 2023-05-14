@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import { errorTypes } from '../types';
 
 const initialState = {
@@ -5,7 +6,7 @@ const initialState = {
     error:        false,
 };
 
-export const errorReducer = (state = initialState, action) => {
+export const errorReducer = (state = initialState, action: AnyAction) => {
     switch (action.type) {
         case errorTypes.SET_ERROR: {
             return {

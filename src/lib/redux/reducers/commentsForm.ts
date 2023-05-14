@@ -1,10 +1,11 @@
+import { AnyAction } from 'redux';
 import { commentsFormType } from '../types';
 
 const initialState = {
     postHash: '',
 };
 
-export const commentsFormReducer = (state = initialState, action) => {
+export const commentsFormReducer = (state = initialState, action: AnyAction) => {
     switch (action.type) {
         case commentsFormType.SET_CURRENT_POST_HASH: {
             return {
