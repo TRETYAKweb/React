@@ -12,7 +12,7 @@ import {
 
 import { useErrorMessage } from './hooks/useErrorMessage';
 
-export const App = () => {
+export const App: React.FC = () => {
     useErrorMessage();
 
     return <Routes>
