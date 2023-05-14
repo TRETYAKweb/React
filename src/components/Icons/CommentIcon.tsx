@@ -1,4 +1,4 @@
-export const CommentIcon = () => {
+export const CommentIcon: React.FC = () => {
     return (
         <svg
             className='comment-icon'
