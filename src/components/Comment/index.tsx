@@ -1,4 +1,6 @@
-export const Comment = ({ authorName, created, body }) => {
+import { ICommentProps } from '../../types';
+
+export const Comment: React.FC<ICommentProps> = ({ authorName, created, body }) => {
     return (
         <>
             <li className='commentBody'>
