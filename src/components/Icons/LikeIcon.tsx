@@ -1,4 +1,4 @@
-export const LikeIcon = () => {
+export const LikeIcon: React.FC = () => {
     return (
         <svg
             width='24'
