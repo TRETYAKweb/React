@@ -1,4 +1,4 @@
-export const Composer = () => {
+export const Composer: React.FC = () => {
     return (
         <section className='composer'>
             <img src='https://placeimg.com/256/256/animals' alt='avatar' />
