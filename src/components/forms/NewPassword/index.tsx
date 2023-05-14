@@ -6,24 +6,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 
 // Elements
-import { useDispatch } from 'react-redux';
 import { Input } from '../elements';
 
 // Other
 import { schema } from './config';
 import { authActions } from '../../../lib/redux/actions';
+import { useAppDispatch } from '../../../lib/redux/init/store';
+import { IResetPassword } from '../../../types';
 
-export const NewPasswordForm = () => {
-    const dispatch = useDispatch();
+export const NewPasswordForm: React.FC = () => {
+    const dispatch = useAppDispatch();
 
-    const form = useForm({
+    const form = useForm<IResetPassword>({
         mode:     'onTouched',
         resolver: yupResolver(schema),
     });
 
     const handleSubmit = form.handleSubmit((data) => {
-        const { oldPassword, newPassword } = data;
-        dispatch(authActions.resetPasswordRequest(oldPassword, newPassword));
+        dispatch(authActions.resetPasswordRequest(data));
     });
 
     useEffect(() => {
