@@ -1,10 +1,8 @@
-import { useContext, useEffect } from 'react';
 import { Composer } from '../forms/Composer';
 import { PostsContainer } from '../Post';
 import { RecentComments } from '../RecentComments';
-import { useProfile } from '../../hooks';
 
-export const Feed = () => {
+export const Feed: React.FC = () => {
     return (
         <>
             <div className='posts'>
