@@ -4,7 +4,7 @@ import { Navigation } from '../Navigation';
 import { Footer } from '../footer';
 
 
-export const MainLayout = (props) => {
+export const MainLayout = (props: { hasNav: boolean }) => {
     const { hasNav } = props;
 
     return (
