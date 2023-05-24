@@ -1,4 +1,6 @@
-export const fetchify = (isFetched, content) => {
+import { ReactNode } from 'react';
+
+export const fetchify = (isFetched: boolean, content:ReactNode) => {
     if (!isFetched) {
         return <h3 className='fetchify'>Загрузка...</h3>;
     }
