@@ -8,12 +8,8 @@ import {
 // Instruments
 import { AUTH_URL, FEED_URL } from './config';
 
-const getToken = (): string | never => {
+const getToken = (): string => {
     const token = localStorage.getItem('token');
-
-    if (!token) {
-        throw new Error('token not found');
-    }
 
     return typeof token === 'string' ? token : '';
 };
