@@ -1,4 +1,9 @@
-export const CommentIcon =  ({ className }) => {
+
+interface ICommentIcon {
+    className: string,
+}
+
+export const CommentIcon:React.FC<ICommentIcon> =  ({ className }) => {
     return (
         <>
             <svg
