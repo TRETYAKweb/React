@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { selectErrorMessage } from '../lib/redux/selectors';
 import { errorAction } from '../lib/redux/actions';
 import { toastOptions } from '../constants/toastOptions';
+import { useAppDispatch, useAppSelector } from '../lib/redux/init/store';
 
 export const useErrorMessage = () => {
-    const errorMessage = useSelector(selectErrorMessage);
-    const dispatch = useDispatch();
+    const errorMessage = useAppSelector(selectErrorMessage);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (errorMessage) {
