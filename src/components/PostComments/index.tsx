@@ -6,11 +6,11 @@ import { usePostDetails } from '../../hooks/usePostDetails';
 import {  fetchify } from '../../helpers/fetchify';
 
 
-export const PostComments = () => {
+export const PostComments:React.FC = () => {
     const navigate = useNavigate();
     const { postId } = useParams();
 
-    const { data, isFetched } = usePostDetails(postId);
+    const { data, isFetched } = usePostDetails(postId as string);
 
     useEffect(() => {
         if (!data && isFetched) {
@@ -36,7 +36,7 @@ export const PostComments = () => {
             <div className='wrapper'>
                 <a
                     onClick={goBack}
-                    activeclassname='active' aria-current='page'
+                    // activeclassname='active' aria-current='page'
                     className='link-back active'>
                     <div className='arrow'></div>Назад
                 </a>
