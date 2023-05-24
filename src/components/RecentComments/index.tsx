@@ -3,7 +3,7 @@ import { useRecentComments } from '../../hooks/useRecentComments';
 
 import { fetchify } from '../../helpers';
 
-const Comment = () => {
+const Comment:React.FC = () => {
     const { data, isFetched } = useRecentComments();
 
     const commentsJSX = data?.map((it) => <li className='comment' key={it.hash}>
@@ -13,7 +13,7 @@ const Comment = () => {
         <time>{it.created}</time>
         <p className='body'>{it.body}</p>
         <NavLink to={`/feed/${it.post.hash}`}>
-        Больше комментариев к посту
+            Больше комментариев к посту
         </NavLink>
     </li>);
 
