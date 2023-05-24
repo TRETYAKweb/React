@@ -1,5 +1,5 @@
 import { NewPasswordForm } from '../../components/forms/NewPassword';
 
-export const NewPasswordPage = () => {
+export const NewPasswordPage:React.FC = () => {
     return <NewPasswordForm />;
 };
