@@ -14,13 +14,14 @@ import { Input } from '../elements';
 
 // Other
 import { schema } from './config';
+import { IProfileRequest } from '../../../types';
 
-export const ProfileForm = () => {
+export const ProfileForm:React.FC = () => {
     const navigate = useNavigate();
     const updateProfile = useUpdateProfile();
     const { data: profileData } = useProfile();
 
-    const form = useForm({
+    const form = useForm<IProfileRequest>({
         mode:     'onTouched',
         resolver: yupResolver(schema),
     });
@@ -40,7 +41,7 @@ export const ProfileForm = () => {
         <form className='form' onSubmit={handleSubmit}>
             <div className='wrapper'>
                 <div>
-                    <h1>Привет, {profileData?.name}</h1>
+                    <h1>Привет, {profileData?.data?.name}</h1>
                     <img src='https://placeimg.com/256/256/animals' alt='avatar' />
 
                     <Input
