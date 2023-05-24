@@ -1,4 +1,8 @@
-export const LikeIcon =  ({ className }) => {
+interface ICommentIcon {
+    className: string,
+}
+
+export const LikeIcon:React.FC<ICommentIcon> =  ({ className }) => {
     return (
         <>
             <svg
