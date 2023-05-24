@@ -1,8 +1,7 @@
 // Core
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 // Core
-import { useDispatch, useSelector } from 'react-redux';
 
 // Components
 import { CommentForm } from '../forms/CommentForm';
@@ -18,10 +17,16 @@ import { fetchify } from '../../helpers/fetchify';
 
 // Hooks
 import { usePosts } from '../../hooks';
+import { IPost } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/init/store';
 
-const Post = ({ data }) => {
-    const dispatch = useDispatch();
-    const currentPostHash = useSelector(selectCurrentPostHash);
+interface IPostProps {
+    data: IPost;
+}
+
+const Post: React.FC<IPostProps> = ({ data }) => {
+    const dispatch = useAppDispatch();
+    const currentPostHash = useAppSelector(selectCurrentPostHash);
     const [comments, setComments] = useState(data.comments);
 
     const userName = 'Евгений Третяк';
@@ -30,7 +35,7 @@ const Post = ({ data }) => {
         dispatch(commentsFormActions.setCurrentPostHash(data.hash));
     };
 
-    const addComment = (comment) => {
+    const addComment = (comment: string) => {
         setComments([
             ...comments,
             {
@@ -91,12 +96,15 @@ const Post = ({ data }) => {
     );
 };
 
-export const PostsContainer = () => {
+export const PostsContainer:React.FC = () => {
     const {
         data, isFetched,
     } = usePosts();
 
+    console.log(data);
+
     const postJSX = data?.map((ti) =>  <Post key={ti.hash} data={ti} />);
+
 
     return (
         <ul className='posts-container'>
